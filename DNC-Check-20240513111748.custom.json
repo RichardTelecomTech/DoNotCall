@@ -1,0 +1,47 @@
+{
+  "name": "DNC-Check - Exported 2024-05-13 @ 11:17",
+  "integrationType": "salesforce-datadip",
+  "actionType": "custom",
+  "config": {
+    "request": {
+      "requestUrlTemplate": "/services/data/v55.0/search/?q=$esc.url(\"FIND {$salesforce.escReserved(${input.contact}))} IN PHONE FIELDS RETURNING Contact(ID,DoNotCall)\")",
+      "requestType": "GET",
+      "headers": {},
+      "requestTemplate": "${input.rawRequest}"
+    },
+    "response": {
+      "translationMap": {
+        "DoNotCall": "*..DoNotCall"
+      },
+      "translationMapDefaults": {
+        "DoNotCall": "[]"
+      },
+      "successTemplate": "{\n\"DoNotCall\": ${successTemplateUtils.firstFromArray(\"${DoNotCall}\")}}"
+    }
+  },
+  "contract": {
+    "input": {
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "contact": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "output": {
+      "successSchema": {
+        "type": "object",
+        "properties": {
+          "DoNotCall": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "secure": false
+}

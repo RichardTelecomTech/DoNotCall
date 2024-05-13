@@ -1,0 +1,27 @@
+{
+  "id": "323f0d1e-c255-4821-9931-ddbd50e52580",
+  "name": "DoNotcall Register",
+  "topicName": "v2.detail.events.conversation.{id}.user.start",
+  "target": {
+    "type": "Workflow",
+    "id": "8279b661-3b87-4292-a481-464741745247",
+    "workflowTargetSettings": {
+      "dataFormat": "TopLevelPrimitives"
+    }
+  },
+  "version": 1,
+  "enabled": true,
+  "matchCriteria": [
+    {
+      "jsonPath": "mediaType",
+      "operator": "Equal",
+      "value": "VOICE"
+    },
+    {
+      "jsonPath": "direction",
+      "operator": "Equal",
+      "value": "OUTBOUND"
+    }
+  ],
+  "selfUri": "/api/v2/processautomation/triggers/323f0d1e-c255-4821-9931-ddbd50e52580"
+}
